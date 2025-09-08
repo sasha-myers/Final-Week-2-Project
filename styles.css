@@ -1,0 +1,194 @@
+/* charity: water Brand Colors & Fonts
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+
+Fonts:
+- Proxima Nova
+- Avenir
+
+*/
+
+/* 
+  Charity: Water Landing Page Styles
+  This CSS uses the provided color palette and beginner-friendly styles.
+*/
+
+:root{
+  --brand-yellow:#FFD200; --brand-dark:#0b0b0b; --brand-text:#1a1a1a;
+  --page-max:1200px; --radius-lg:14px; --input-bd:2px solid #111;
+  --surface:#fff;
+  --bg:#FFF7E1; /* Changed background color to HEX #FFF7E1 for the whole website */
+  --shadow-lg:0 12px 28px rgba(0,0,0,.12); --shadow-md:0 6px 16px rgba(0,0,0,.08)
+}
+*{box-sizing:border-box} html,body{height:100%}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Cambria,serif;color:var(--brand-text);background:var(--bg);line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block;height:auto}
+:focus-visible{outline:3px solid #000;outline-offset:2px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(120%) blur(8px);border-bottom:1px solid #eee}
+.header-inner{max-width:var(--page-max);margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--brand-dark);font-weight:800;letter-spacing:.02em;font-size:20px}
+.brand-badge{width:28px;height:28px;border-radius:6px;background:var(--brand-yellow);display:grid;place-items:center;font-weight:900;font-family:Georgia,serif;color:#000}
+
+.nav-wrap{display:flex;align-items:center;gap:16px;position:relative}
+.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px}
+.main-nav a{padding:8px 10px;border-radius:10px;font-weight:600}
+.main-nav a:hover{background:#f3f3f3}
+.cta{background:var(--brand-yellow);color:#000;font-weight:800;padding:10px 16px;border-radius:999px}
+
+/* Hamburger + Drawer (CSS only) */
+#nav-toggle{position:absolute;opacity:0;pointer-events:none}
+.hamburger{display:none;width:40px;height:40px;border-radius:10px;border:2px solid #111;align-items:center;justify-content:center;cursor:pointer}
+.hamburger .bars{width:20px;height:2px;background:#111;position:relative;transition:background .2s ease}
+.hamburger .bars::before,.hamburger .bars::after{content:"";position:absolute;left:0;right:0;height:2px;background:#111;transition:transform .25s ease, top .25s ease}
+.hamburger .bars::before{top:-6px}
+.hamburger .bars::after{top:6px}
+
+.mobile-drawer{position:fixed;top:64px;left:16px;right:16px;z-index:55;background:#fff;border:1px solid #eee;border-radius:14px;box-shadow:var(--shadow-lg);padding:12px;
+  opacity:0;transform:translateY(-8px);visibility:hidden;pointer-events:none;transition:opacity .25s ease, transform .25s ease, visibility 0s linear .25s}
+.mobile-drawer a{display:block;padding:12px 10px;border-radius:10px;font-weight:700;color:#111}
+.mobile-drawer a:hover{background:#f6f6f6}
+
+#nav-toggle:checked ~ .mobile-drawer{opacity:1;transform:translateY(0);visibility:visible;pointer-events:auto;transition:opacity .25s ease, transform .25s ease}
+#nav-toggle:checked + label.hamburger .bars{background:transparent}
+#nav-toggle:checked + label.hamburger .bars::before{top:0;transform:rotate(45deg)}
+#nav-toggle:checked + label.hamburger .bars::after{top:0;transform:rotate(-45deg)}
+
+@media(max-width:920px){.main-nav,.cta.desktop-cta{display:none}.hamburger{display:flex}}
+
+/* Hero */
+.hero{background:var(--surface)}
+.hero-wrap{max-width:var(--page-max);margin:0 auto;padding:32px 16px 20px;display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+.hero-copy h1{font-family:'Proxima Nova','Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-weight:900;font-size:clamp(2rem,4.6vw,64px);margin:10px 0 8px;line-height:1.05}
+.hero-copy p.lede{font-family:'Proxima Nova','Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:50ch;margin:0 0 14px;font-size:18px;color:#333}
+.cta-group{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.amount-card{background:var(--brand-yellow);padding:12px;border-radius:var(--radius-lg);display:flex;gap:8px;min-width:260px;box-shadow:var(--shadow-md)}
+.amount-card input{flex:1;padding:12px 14px;border:var(--input-bd);border-radius:10px;font-weight:700}
+.amount-card button{background:#111;color:#fff;border:none;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer}
+.secondary-btn{border:2px solid var(--brand-yellow);padding:12px 18px;border-radius:var(--radius-lg);font-weight:800;background:#fff}
+.hero-figure{min-height:320px;border-radius:20px;background:#ddd url(img/Zimbabwe_2022_CG-7529.jpg) center/cover no-repeat;box-shadow:var(--shadow-lg);position:relative}
+.glass-overlay{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.85);padding:8px 10px;border-radius:10px;font-weight:700}
+
+/* Make the hero image cover the right half of the hero area */
+.hero {
+  /* Use a gradient to fade the image into the background on the left side */
+  background: linear-gradient(to left, rgba(250,250,250,0.95) 48%, rgba(250,250,250,0.7) 60%, rgba(250,250,250,0.3) 70%, transparent 80%), url('img/Zimbabwe_2022_CG-7529.jpg') right center / cover no-repeat;
+  min-height: 340px; /* Set a minimum height for the hero area */
+  position: relative;
+}
+
+/* Blurred left side of hero area for small screens */
+@media (max-width: 700px) {
+  .hero::before {
+    /* Add a blurred white overlay to the left half */
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 55%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .hero-wrap, .hero-copy, .cta-group {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Impact */
+.impact-bar{max-width:var(--page-max);margin:14px auto 36px;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.impact-card{background:var(--surface);border:1px solid #eee;border-radius:16px;padding:16px;text-align:center}
+.impact-card b{display:block;font-size:22px;margin-bottom:6px}
+
+/* Email form card */
+.donate-wrap{max-width:var(--page-max);margin:0 auto 64px;padding:0 16px}
+.donate-card{background:var(--surface);border:1px solid #eee;border-radius:18px;padding:20px;box-shadow:var(--shadow-md)}
+.donate-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-row{display:flex;flex-direction:column;gap:6px}
+label{font-weight:700;font-size:14px}
+input[type=text],input[type=email]{padding:12px 14px;border:var(--input-bd);border-radius:10px;font-size:16px}
+.donate-actions{display:flex;gap:12px;align-items:center;margin-top:8px}
+.btn-primary{background:#111;color:#fff;border:none;padding:12px 18px;border-radius:12px;font-weight:800;cursor:pointer}
+
+/* Footer */
+footer{border-top:1px solid #eee;padding:24px 16px 80px;background:var(--surface)}
+.footer-inner{max-width:var(--page-max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+/* Sticky bar */
+.sticky-donate{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--brand-yellow);border-top:2px solid #000}
+.sticky-donate b{font-size:16px}
+.sticky-donate a{background:#000;color:#fff;padding:10px 16px;border-radius:999px;font-weight:800}
+
+/* Breakpoints */
+@media(max-width:980px){.hero-wrap{grid-template-columns:1fr}.hero-figure{order:-1;height:48vh;min-height:280px}}
+@media(max-width:920px){.impact-bar{grid-template-columns:1fr}.donate-grid{grid-template-columns:1fr}.sticky-donate{display:flex}}
+
+/* Modal */
+body.modal-open{overflow:hidden}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal{position:relative;background:#FFC907; /* Changed modal background to HEX #FFC907 */;border-radius:16px;box-shadow:var(--shadow-lg);width:100%;max-width:480px;padding:20px}
+.modal h2{margin:0 0 6px;font-family:'Proxima Nova','Montserrat',sans-serif}
+.modal-desc{margin:0 0 12px;color:#333}
+.modal-inputs{display:grid;gap:10px}
+.modal input[type=number]{width:100%;height:56px;padding:12px 14px;border:2px solid #111;border-radius:12px;font-size:18px;font-weight:700}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.chip{border:2px solid #111;background:#fff;border-radius:999px;padding:10px 0;font-weight:800;cursor:pointer}
+.modal-cta{margin-top:10px;background:#111;color:#fff;border:none;border-radius:12px;padding:14px 18px;font-weight:800;width:100%}
+.modal-note{display:block;margin-top:10px;color:#555}
+.modal-close{position:absolute;top:10px;right:12px;background:none;border:none;font-size:22px;cursor:pointer}
+
+/* Shake animation for call to action buttons */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Apply shake on hover for CTA buttons */
+.cta:hover,
+.btn-primary:hover,
+.secondary-btn:hover,
+.modal-cta:hover {
+  animation: shake 0.4s;
+}
+
+/* Thank you card popup styles for beginners */
+.thankyou-card {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #FFF7E1; /* Changed thank you card background to HEX #FFF7E1 */
+  color: #111;
+  padding: 28px 36px;
+  border-radius: 16px;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 1001;
+  text-align: center;
+  display: none;
+}
+
+/* Remove confetti styles */
+.confetti, .confetti-dot { display: none !important; }
