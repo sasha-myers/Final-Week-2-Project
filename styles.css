@@ -67,6 +67,17 @@ img{max-width:100%;display:block;height:auto}
 #nav-toggle:checked + label.hamburger .bars::before{top:0;transform:rotate(45deg)}
 #nav-toggle:checked + label.hamburger .bars::after{top:0;transform:rotate(-45deg)}
 
+/* Show mobile drawer on hamburger hover (if not checked) */
+@media(max-width:920px){
+  #nav-toggle:not(:checked) + label.hamburger:hover ~ .mobile-drawer {
+    opacity:1;
+    transform:translateY(0);
+    visibility:visible;
+    pointer-events:auto;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+}
+
 @media(max-width:920px){.main-nav,.cta.desktop-cta{display:none}.hamburger{display:flex}}
 
 /* Hero */
