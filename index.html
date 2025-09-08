@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>charity: water — Give Water</title>
+  <meta name="description" content="For just $40, you can give clean water today to someone in need — and see the impact, every time." />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Brand logo: using cw_logo-2.png for beginners -->
+      <a class="brand" href="#">
+        <img src="img/cw_logo-2.png" alt="charity: water logo" style="height:32px; width:auto;">
+      </a>
+      <div class="nav-wrap">
+        <nav class="main-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <!-- “Subscribe” scrolls to email form -->
+            <li><a href="#donation-form">Subscribe</a></li>
+          </ul>
+        </nav>
+        <!-- Yellow CTA opens modal -->
+        <a class="cta desktop-cta open-modal" href="#donate">Give Water</a>
+
+        <!-- Hamburger -->
+        <input type="checkbox" id="nav-toggle" />
+        <label for="nav-toggle" class="hamburger" aria-label="Menu" aria-controls="mobile-menu"><span class="bars"></span></label>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="mobile-drawer" role="menu">
+      <a role="menuitem" href="#projects">Projects</a>
+      <a role="menuitem" href="#impact">Impact</a>
+      <a role="menuitem" href="#donation-form">Subscribe</a>
+      <!-- Mobile CTA that opens modal -->
+      <a role="menuitem" class="open-modal" href="#donate" style="margin-top:6px; text-align:center; background:var(--brand-yellow); border-radius:12px;">Give Water</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="hero">
+    <div class="hero-wrap">
+      <section class="hero-copy">
+        <h1>A Single Click.<br/>A Saved Life.</h1>
+        <p class="lede">For just <strong>$40</strong>, you can give clean water today to someone in need — and see the impact, every time.</p>
+
+        <div class="cta-group" id="donate">
+          <!-- Enter Amount form (opens modal + pre-fills) -->
+          <form id="amountForm" class="amount-card" action="#">
+            <input id="amountInput" type="number" min="5" step="5" name="amount" placeholder="$40" />
+            <button type="submit">Enter Amount</button>
+          </form>
+
+          <a class="secondary-btn open-modal" href="#donate">Give Water · Grow Hope</a>
+        </div>
+      </section>
+
+      <figure class="hero-figure">
+      </figure>
+    </div>
+  </main>
+
+  <!-- Impact -->
+  <section id="impact" class="impact-bar">
+    <div class="impact-card"><b>771M+</b> people still lack access to clean water.</div>
+    <div class="impact-card"><b>$40</b> can bring one person clean water today.</div>
+    <div class="impact-card"><b>100%</b> of your donation funds clean water projects.</div>
+  </section>
+
+  <!-- Email Form -->
+  <section id="donation-form" class="donate-wrap">
+    <div class="donate-card">
+      <h2>Stay Updated</h2>
+      <p>Sign up to receive live updates on your donation and impact stories.</p>
+      <form>
+        <div class="donate-grid">
+          <div class="form-row">
+            <label for="name">Full name</label>
+            <input id="name" type="text" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email address</label>
+            <input id="email" type="email" required>
+          </div>
+        </div>
+        <div class="donate-actions">
+          <button class="btn-primary" type="submit">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <small>© <span id="year">2025</span> charity: water — Non-profit organization</small>
+      <!-- Yellow CTA opens modal -->
+      <a class="cta open-modal" href="#donate">Give Water</a>
+    </div>
+  </footer>
+
+  <!-- Sticky Bar -->
+  <div class="sticky-donate">
+    <b>Stay updated on your impact</b>
+    <a class="open-modal" href="#donate">Give Water</a>
+  </div>
+
+  <!-- Donation Modal -->
+  <div class="modal-overlay" id="donationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal">
+      <button class="modal-close" id="closeModal" aria-label="Close donation dialog">✕</button>
+      <h2 id="modalTitle">Enter Your Gift Amount</h2>
+      <p id="modalDesc" class="modal-desc">Every dollar brings clean water closer to someone who needs it.</p>
+
+      <div class="modal-inputs">
+        <input id="giftAmount" type="number" min="5" step="5" placeholder="$40" inputmode="decimal" />
+        <div class="quick-grid">
+          <button class="chip" data-amt="25" type="button">$25</button>
+          <button class="chip" data-amt="40" type="button">$40</button>
+          <button class="chip" data-amt="75" type="button">$75</button>
+          <button class="chip" data-amt="100" type="button">$100</button>
+        </div>
+      </div>
+
+      <button class="modal-cta" type="button" id="enterAmountBtn">Enter Amount</button>
+      <small class="modal-note">Secure processing • 100% funds clean water projects</small>
+    </div>
+  </div>
+
+  <!-- Thank you card pops up after donation -->
+  <div class="thankyou-card" id="thankyouCard" style="display:none;">Thank you for your donation!</div>
+
+  <!-- JS (kept inline for simplicity) -->
+  <script>
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+    // Open modal from any .open-modal
+    $$('.open-modal').forEach(btn => btn.addEventListener('click', e => {
+      e.preventDefault();
+      document.body.classList.add('modal-open');
+      $('#donationModal').style.display = 'flex';
+      setTimeout(()=> $('#giftAmount').focus(), 0);
+      // If launched from mobile drawer, close it
+      const toggle = $('#nav-toggle');
+      if (toggle) toggle.checked = false;
+    }));
+
+    // Enter Amount -> open modal + prefill
+    $('#amountForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const val = parseFloat($('#amountInput').value || '40');
+      $('#giftAmount').value = isNaN(val) ? '' : val;
+      document.body.classList.add('modal-open');
+      $('#donationModal').style.display = 'flex';
+      setTimeout(()=> $('#giftAmount').focus(), 0);
+    });
+
+    // Close modal helpers
+    function closeModal(){
+      $('#donationModal').style.display = 'none';
+      document.body.classList.remove('modal-open');
+    }
+    $('#closeModal').addEventListener('click', closeModal);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+    $('#donationModal').addEventListener('click', (e)=>{ if(e.target.id === 'donationModal') closeModal(); });
+
+    // Quick chip amounts
+    $$('.chip').forEach(chip => chip.addEventListener('click', ()=>{
+      $('#giftAmount').value = chip.dataset.amt;
+      $('#giftAmount').focus();
+    }));
+
+    // Placeholder for next-step behavior
+    $('#enterAmountBtn').addEventListener('click', ()=>{
+      const amt = parseFloat($('#giftAmount').value || '40');
+      alert(`Thanks! You'll enter $${amt.toFixed(2)} on the next step.`);
+      showThankYou();
+      closeModal();
+    });
+
+    // Show thank you card for beginners
+    function showThankYou() {
+      var card = document.getElementById('thankyouCard');
+      card.style.display = 'block';
+      setTimeout(function(){ card.style.display = 'none'; }, 2000);
+    }
+
+    // Auto-close mobile drawer when any link is clicked
+    $$('#mobile-menu a').forEach(link => link.addEventListener('click', () => {
+      const toggle = $('#nav-toggle');
+      if (toggle) toggle.checked = false;
+    }));
+
+    // Footer year
+    $('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
