@@ -140,6 +140,8 @@
 
   <!-- Thank you card pops up after donation -->
   <div class="thankyou-card" id="thankyouCard" style="display:none;">Thank you for your donation!</div>
+  <!-- Appreciation popup for subscription -->
+  <div class="thankyou-card" id="appreciateCard" style="display:none;">We appreciate you</div>
 
   <!-- JS (kept inline for simplicity) -->
   <script>
@@ -196,6 +198,19 @@
       card.style.display = 'block';
       setTimeout(function(){ card.style.display = 'none'; }, 2000);
     }
+
+    // Show appreciation popup for subscription
+    function showAppreciate() {
+      var card = document.getElementById('appreciateCard');
+      card.style.display = 'block';
+      setTimeout(function(){ card.style.display = 'none'; }, 2000);
+    }
+
+    // Add event listener for subscription form
+    document.querySelector('#donation-form form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showAppreciate();
+    });
 
     // Auto-close mobile drawer when any link is clicked
     $$('#mobile-menu a').forEach(link => link.addEventListener('click', () => {
