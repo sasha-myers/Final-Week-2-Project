@@ -213,9 +213,25 @@
     });
 
     // Auto-close mobile drawer when any link is clicked
-    $$('#mobile-menu a').forEach(link => link.addEventListener('click', () => {
+    $$('#mobile-menu a').forEach(link => link.addEventListener('click', (e) => {
       const toggle = $('#nav-toggle');
       if (toggle) toggle.checked = false;
+      // If the link is a modal trigger, open modal
+      if (link.classList.contains('open-modal')) {
+        e.preventDefault();
+        document.body.classList.add('modal-open');
+        $('#donationModal').style.display = 'flex';
+        setTimeout(()=> $('#giftAmount').focus(), 0);
+      } else {
+        // For anchor links, scroll smoothly to section
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
     }));
 
     // Footer year
